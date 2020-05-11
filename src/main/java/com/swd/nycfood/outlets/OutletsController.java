@@ -61,7 +61,7 @@ public class OutletsController {
 		List<String> cuisineList = new ArrayList<>();
 		Session sess = cli.getSession();
 		Collection col = sess.getSchema(SCHEMA).getCollection(COLLECTION);
-		DocResult dr = col.find().fields("cuisine AS cuisine").groupBy("cuisine").sort("cuisine").sort("cuisine").execute();
+		DocResult dr = col.find().fields("cuisine AS cuisine").groupBy("cuisine").sort("cuisine").execute();
 		dr.forEach(dbDoc -> cuisineList.add(mapper.fromJson(dbDoc.get("cuisine").toString(),String.class)));
 		sess.close();
 		return new ResponseEntity<>(cuisineList,HttpStatus.OK);
