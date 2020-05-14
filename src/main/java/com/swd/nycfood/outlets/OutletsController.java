@@ -29,13 +29,15 @@ import com.mysql.cj.xdevapi.Session;
 @RestController
 public class OutletsController {
 	
-	private static final String SCHEMA = "nycfood";
-	private static final String COLLECTION = "outlets";
+	private static final String SCHEMA = "nycfood";		// change as you feel fit
+	private static final String COLLECTION = "outlets";	// change as you feel fit
 	private Gson mapper = new Gson();
 	private Client cli = null;
 		
 	OutletsController() {
-		String cnxUrl = "mysqlx://localhost:33060/nycfood?user=root&password=Simp50n5!";
+		// Change <host>,<schema>,<username> and <password> as appropriate, see example below
+		String cnxUrl = "mysqlx://<host>:33060/<schema>?user=<username>&password=<userpassword>";
+		// e.g. String cnxUrl = "mysqlx://localhost:33060/nycfood?user=root&password=MyPa55w0rd!";
 		String pool = "{\"pooling\": {\"enabled\":true, \"maxSize\":25, \"maxIdleTime\":30000, \"queueTimeout\":10000}}";
 		cli = new ClientFactory().getClient(cnxUrl,pool);
 	}
